@@ -44,7 +44,10 @@ public class MainActivity extends AppCompatActivity {
         TMapPoint tMapPointEnd = new TMapPoint(36.366717, 127.644623); // 충남대학교 공과대학 5호관(목적지)
 
         try {
-            TMapPolyLine tMapPolyLine = new TMapData().findPathData(tMapPointStart, tMapPointEnd);
+            // TMapPolyLine tMapPolyLine = new TMapData().findPathData(tMapPointStart, tMapPointEnd); 이 문장을 사용하기 위해서는 Thread를 사용해야한다.
+
+            TMapData tmapdata = new TMapData();
+            TMapPolyLine tMapPolyLine = tmapdata.findPathDataWithType(TMapData.TMapPathType.CAR_PATH, tMapPointStart, tMapPointEnd);
             tMapPolyLine.setLineColor(Color.RED);
             tMapPolyLine.setLineWidth(2);
             tMapView.addTMapPolyLine("Line1", tMapPolyLine);
