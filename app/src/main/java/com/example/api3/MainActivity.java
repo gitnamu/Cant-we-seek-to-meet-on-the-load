@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         if (permission1 == PackageManager.PERMISSION_DENIED || permission2 == PackageManager.PERMISSION_DENIED) {
             // 마쉬멜로우 이상버전부터 권한을 물어본다
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                // 권한 체크(READ_PHONE_STATE의 requestCode를 1000으로 세팅
+                // 권한 체크(LOCATION_STATE의 requestCode를 1000으로 세팅
                 requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1000);
             }
             return;
@@ -44,9 +44,9 @@ public class MainActivity extends AppCompatActivity {
         TMapPoint tMapPointEnd = new TMapPoint(36.366717, 127.644623); // 충남대학교 공과대학 5호관(목적지)
 
         try {
-            // TMapPolyLine tMapPolyLine = new TMapData().findPathData(tMapPointStart, tMapPointEnd); 이 문장을 사용하기 위해서는 Thread를 사용해야한다.
-
+            // TMapPolyLine tMapPolyLine = new TMapData().findPathData(tMapPointStart, tMapPointEnd); 이 문장을 사용하기 위해서는 Thread로 사용한다.
             TMapData tmapdata = new TMapData();
+
             TMapPolyLine tMapPolyLine = tmapdata.findPathDataWithType(TMapData.TMapPathType.CAR_PATH, tMapPointStart, tMapPointEnd);
             tMapPolyLine.setLineColor(Color.RED);
             tMapPolyLine.setLineWidth(2);
