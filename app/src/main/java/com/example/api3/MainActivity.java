@@ -21,16 +21,15 @@ public class MainActivity extends AppCompatActivity {
         TMapView tMapView = new TMapView(this);
         tMapView.setSKTMapApiKey( "l7xx3b3f893778d04343a7a2fbd0e5bb1599" );
 
-
-
-        TMapPoint tMapPointStart = new TMapPoint(37.570841, 126.985302);
-        TMapPoint tMapPointEnd = new TMapPoint(37.551135, 126.988205);
+        TMapPoint tMapPointStart = new TMapPoint(37.570841, 126.985302); // SKT타워(출발지)
+        TMapPoint tMapPointEnd = new TMapPoint(36.366717, 127.644623); // 충남대학교 공과대학 5호관(목적지)
 
         try {
             TMapPolyLine tMapPolyLine = new TMapData().findPathData(tMapPointStart, tMapPointEnd);
             tMapPolyLine.setLineColor(Color.BLUE);
             tMapPolyLine.setLineWidth(2);
             tMapView.addTMapPolyLine("Line1", tMapPolyLine);
+
         }catch(Exception e) {
             e.printStackTrace();
         }
