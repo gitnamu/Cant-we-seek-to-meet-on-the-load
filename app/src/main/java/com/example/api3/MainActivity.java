@@ -46,9 +46,22 @@ public class MainActivity extends AppCompatActivity {
         try {
             // TMapPolyLine tMapPolyLine = new TMapData().findPathData(tMapPointStart, tMapPointEnd); 이 문장을 사용하기 위해서는 Thread로 사용한다.
             TMapData tmapdata = new TMapData();
-
-            TMapPolyLine tMapPolyLine = tmapdata.findPathDataWithType(TMapData.TMapPathType.CAR_PATH, tMapPointStart, tMapPointEnd);
-            tMapPolyLine.setLineColor(Color.RED);
+            // tmpdata 객체 생성 O
+            tmapdata.findPathDataWithType(TMapData.TMapPathType.CAR_PATH,tMapPointStart,tMapPointEnd, new TMapData.FindPathDataListenerCallback(){
+                // CAR_PATH : 차 경로
+                @Override
+                public void onFindPathData(TMapPolyLine tMapPolyLine){
+                    TMapView mMapView = new TMapView();
+                    // mMapView 객체 생성 오류 발생
+                    // TMapView라는게 없는데 객체를 만들려고 해서 그럼
+                    // alt + enter하면 TMapView 객체로 만들어지는데 대신 써야할 것은 무엇인가
+                    mMapView.addTMapPath(tMapPolyLine);
+                }
+            });
+            // 당연히 tMapPolyLine은 안되겠지 그렇게 선언한게 없으니깐
+            // 아니면 내가 라인을 정의를 안해줘서 안되는걸까?
+            // 그러면 라인 정의를 해주고 하면 되는건가?
+            tpolyLine.setLineColor(Color.RED);
             tMapPolyLine.setLineWidth(2);
             tMapView.addTMapPolyLine("Line1", tMapPolyLine);
 
