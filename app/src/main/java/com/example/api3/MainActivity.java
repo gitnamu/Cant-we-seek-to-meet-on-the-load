@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
             // 당연히 tMapPolyLine은 안되겠지 그렇게 선언한게 없으니깐
             // 아니면 내가 라인을 정의를 안해줘서 안되는걸까?
             // 그러면 라인 정의를 해주고 하면 되는건가?
+            
+            // 2개 해결하면 이제 출발/도착지 경로 표시 가능
             tpolyLine.setLineColor(Color.RED);
             tMapPolyLine.setLineWidth(2);
             tMapView.addTMapPolyLine("Line1", tMapPolyLine);
