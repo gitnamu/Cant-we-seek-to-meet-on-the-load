@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         LinearLayout linearLayoutTmap = (LinearLayout) findViewById(R.id.linearLayoutTmap);
-        TMapView tMapView = new TMapView(this);
+        final TMapView tMapView = new TMapView(this);
         tMapView.setSKTMapApiKey("l7xx3b3f893778d04343a7a2fbd0e5bb1599");
 
         TMapPoint tMapPointStart = new TMapPoint(37.570841, 126.985302); // SKT타워(출발지)
@@ -46,26 +46,22 @@ public class MainActivity extends AppCompatActivity {
         try {
             // TMapPolyLine tMapPolyLine = new TMapData().findPathData(tMapPointStart, tMapPointEnd); 이 문장을 사용하기 위해서는 Thread로 사용한다.
             TMapData tmapdata = new TMapData();
-            // tmpdata 객체 생성 O
+            // tmpdata 객체 생성
             tmapdata.findPathDataWithType(TMapData.TMapPathType.CAR_PATH,tMapPointStart,tMapPointEnd, new TMapData.FindPathDataListenerCallback(){
                 // CAR_PATH : 차 경로
                 @Override
                 public void onFindPathData(TMapPolyLine tMapPolyLine){
-                    TMapView mMapView = new TMapView();
-                    // mMapView 객체 생성 오류 발생
-                    // TMapView라는게 없는데 객체를 만들려고 해서 그럼
-                    // alt + enter하면 TMapView 객체로 만들어지는데 대신 써야할 것은 무엇인가
-                    mMapView.addTMapPath(tMapPolyLine);
+                    // TMapView 객체는 위에 final로 선언되어 있음
+                    // final을 써야 되는 이유 : Variable 'tMapView' is accessed from within inner class, needs to be declared final
+                    tMapView.addTMapPath(tMapPolyLine); // add TMapPath()는 출발 마크, 도착 마크, 경로 이런걸 종합적으로 추가해주는 메소드
+
                 }
             });
-            // 당연히 tMapPolyLine은 안되겠지 그렇게 선언한게 없으니깐
-            // 아니면 내가 라인을 정의를 안해줘서 안되는걸까?
-            // 그러면 라인 정의를 해주고 하면 되는건가?
-            
-            // 2개 해결하면 이제 출발/도착지 경로 표시 가능
-            tpolyLine.setLineColor(Color.RED);
-            tMapPolyLine.setLineWidth(2);
-            tMapView.addTMapPolyLine("Line1", tMapPolyLine);
+            // 만약 아래처럼 하고 싶다면 길 색깔 정하고 width 정하고 addTMapPolyLine() 사용하면 경로만 띄워지게 할 수 있다.
+            // 근데 addTMapPath()처럼 출발, 도착 마크 이런거 설정을 따로 해줘야 된다는 번거로움이 있다.
+            // tpolyLine.setLineColor(Color.RED);
+            // tMapPolyLine.setLineWidth(2);
+            // tMapView.addTMapPolyLine("Line1", tMapPolyLine);
 
         } catch (Exception e) {
             e.printStackTrace();
