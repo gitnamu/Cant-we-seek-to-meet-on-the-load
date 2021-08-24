@@ -40,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
         final TMapView tMapView = new TMapView(this);
         tMapView.setSKTMapApiKey("l7xx3b3f893778d04343a7a2fbd0e5bb1599");
 
-        TMapPoint tMapPointStart = new TMapPoint(37.570841, 126.985302); // SKT타워(출발지)
-        TMapPoint tMapPointEnd = new TMapPoint(36.366717, 127.644623); // 충남대학교 공과대학 5호관(목적지)
+        TMapPoint tMapPointStart = new TMapPoint(37.566389, 126.985303); // SKT타워(출발지)
+        TMapPoint tMapPointEnd = new TMapPoint(36.366548, 127.344537); // 충남대학교 공과대학 5호관(목적지)
         // 제대로 좌표 설정이 안되어있으니깐 다시 설정 필요
 
         try {
