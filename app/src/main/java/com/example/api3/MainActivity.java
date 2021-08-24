@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
         TMapPoint tMapPointStart = new TMapPoint(37.570841, 126.985302); // SKT타워(출발지)
         TMapPoint tMapPointEnd = new TMapPoint(36.366717, 127.644623); // 충남대학교 공과대학 5호관(목적지)
+        // 제대로 좌표 설정이 안되어있으니깐 다시 설정 필요
 
         try {
             // TMapPolyLine tMapPolyLine = new TMapData().findPathData(tMapPointStart, tMapPointEnd); 이 문장을 사용하기 위해서는 Thread로 사용한다.
